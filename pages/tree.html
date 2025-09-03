@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>果树种植 - 甜言猕语</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/kiwi.svg">
+  <link rel="stylesheet" href="../styles/theme.css">
+  <style>
+    .farm { max-width: 960px; margin: 0 auto; }
+    .canvas { height: 360px; border:1px solid #e5e7eb; border-radius:12px; background:linear-gradient(#f0fdf4,#ffffff); display:grid; place-items:center; position:relative; overflow:hidden; }
+    .seed, .sprout, .sapling, .adult, .fruiting { position:absolute; bottom:20px; }
+    .rack { position:absolute; bottom:70px; left:50%; width:70%; height:8px; background:#c8b197; transform:translateX(-50%); box-shadow:0 4px 0 #a78b71; border-radius:4px; display:none; }
+    .vine { position:absolute; left:50%; bottom:80px; width:2px; background:#2ca66f; transform-origin:bottom; box-shadow:0 0 0 2px #2ca66f; border-radius:2px; }
+    .leaf { width:14px; height:8px; background:#79c16c; border-radius:8px 8px 8px 0; transform:rotate(25deg); position:absolute; }
+    .kiwi { width:18px; height:24px; background:#8b6a46; border-radius:12px; position:absolute; box-shadow: inset 0 0 6px #5e4630; }
+  </style>
+</head>
+<body class="page">
+  <div class="back-bar">
+    <a class="back-btn" href="./space.html"><i class="back-btn__icon"></i> 返回</a>
+  </div>
+  <main class="container farm">
+    <h2>果树种植</h2>
+    <div class="actions" style="margin-bottom:8px;">
+      <span>当前克重：<strong id="weight">0</strong> g</span>
+      <span class="badge" id="stage">阶段：种子</span>
+      <span class="badge">积分：<span id="points">0</span></span>
+    </div>
+    <div class="canvas" id="canvas">
+      <div class="rack" id="rack"></div>
+    </div>
+    <div class="card" style="margin-top:12px;">
+      <h3>养护道具</h3>
+      <div class="actions">
+        <button class="btn btn--primary" id="use-nyy">使用营养液（+100g / 50积分）</button>
+        <button class="btn btn--primary" id="use-fl">施肥（+200g / 100积分）</button>
+        <button class="btn btn--primary" id="use-yg">晒太阳（+50g / 30积分）</button>
+      </div>
+    </div>
+    <div class="card" style="margin-top:12px;">
+      <h3>采摘</h3>
+      <button class="btn btn--outline" id="harvest">采摘一颗（+2000积分）</button>
+    </div>
+  </main>
+  <script src="../scripts/main.js"></script>
+  <script src="../scripts/tree.js"></script>
+</body>
+</html>
+

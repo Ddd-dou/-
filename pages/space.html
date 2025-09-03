@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>个人空间 - 甜言猕语</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/kiwi.svg">
+  <link rel="stylesheet" href="../styles/theme.css">
+</head>
+<body class="page">
+  <div class="back-bar">
+    <a class="back-btn" href="../index.html"><i class="back-btn__icon"></i> 返回</a>
+  </div>
+  <main class="container">
+    <h2>个人空间</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>用户信息</h3>
+        <div id="userInfo">未登录</div>
+        <div class="badge">当前积分：<span id="points">0</span></div>
+        <div class="actions" style="margin-top:8px;">
+          <button class="btn btn--outline" id="sign">签到 +100积分</button>
+        </div>
+      </div>
+      <div class="card">
+        <h3>果树生长概览</h3>
+        <div>当前克重：<span id="weight">0</span> g</div>
+        <div id="stage">阶段：种子</div>
+        <div class="actions" style="margin-top:8px;">
+          <a class="btn btn--primary" href="./tree.html">进入种植页面</a>
+        </div>
+      </div>
+      <div class="card">
+        <h3>线下果园图片展示</h3>
+        <div id="carousel" class="placeholder" style="aspect-ratio:16/9;">线下果园轮播（6张）</div>
+      </div>
+      <div class="card">
+        <h3>果树认领</h3>
+        <p>每次仅可认领一棵，采摘后可认领下一棵。首次认领自动拥有初始积分300（注册即发放）。</p>
+        <div class="actions">
+          <button class="btn btn--primary" id="claim">认领果树</button>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="../scripts/main.js"></script>
+  <script src="../scripts/space.js"></script>
+</body>
+</html>
+

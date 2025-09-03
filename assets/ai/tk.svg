@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120">
+  <!-- 透明亚克力透卡：白边、中心透明，右下角IP小猴子，肚子有猕猴桃截面 -->
+  <rect x="10" y="10" width="140" height="100" rx="10" fill="#ffffff" opacity="0.9"/>
+  <rect x="16" y="16" width="128" height="88" rx="8" fill="#ffffff" opacity="0.7"/>
+  <rect x="22" y="22" width="116" height="76" rx="6" fill="#ffffff" opacity="0.2"/>
+  <!-- 右下角IP形象 -->
+  <g transform="translate(110,72)">
+    <circle cx="14" cy="12" r="10" fill="#6b4b33"/>
+    <circle cx="14" cy="12" r="6" fill="#f5d0a6"/>
+    <rect x="6" y="22" width="16" height="16" rx="6" fill="#6b4b33"/>
+    <circle cx="10" cy="10" r="2" fill="#3b2f25"/>
+    <circle cx="18" cy="10" r="2" fill="#3b2f25"/>
+    <!-- 肚子猕猴桃截面 -->
+    <circle cx="14" cy="30" r="6" fill="#c8ef9e" stroke="#63a84d"/>
+    <circle cx="14" cy="30" r="2" fill="#f6e089"/>
+  </g>
+</svg>
+

@@ -1,0 +1,188 @@
+:root {
+  --color-bg: #ffffff;
+  --color-primary: #2ca66f; /* 绿色主题 */
+  --color-primary-600: #248c5e;
+  --color-accent: #a3d9a5;  /* 柔和绿 */
+  --color-text: #1f2937;    /* 深灰 */
+  --color-muted: #6b7280;   /* 次级文字 */
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+  --shadow-1: 0 6px 24px rgba(0,0,0,0.08);
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', Arial, 'Noto Sans', 'Hiragino Sans GB', sans-serif;
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+.page {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid #eef2f7;
+  background: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.brand { display: flex; align-items: center; gap: 10px; }
+.brand__logo { width: 28px; height: 28px; }
+.brand__title { font-size: 18px; margin: 0; color: var(--color-primary-600); }
+
+.top-nav { display: flex; gap: 14px; }
+.top-nav__link {
+  color: var(--color-primary-600);
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+.top-nav__link:hover { background: #f0fdf4; }
+
+.home { padding: 24px 20px 40px; }
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 28px;
+  align-items: center;
+  padding: 34px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, #ffffff 0%, #f6fff8 65%, #ebfff0 100%);
+  box-shadow: var(--shadow-1);
+}
+.hero__title { margin: 0 0 10px; font-size: 32px; color: #111827; }
+.hero__subtitle { margin: 0 0 22px; color: var(--color-muted); font-size: 16px; }
+.hero__cta { display: flex; gap: 12px; }
+.btn { cursor: pointer; border: none; padding: 10px 14px; border-radius: 12px; font-weight: 600; }
+.btn--primary { background: var(--color-primary); color: white; }
+.btn--primary:hover { background: var(--color-primary-600); }
+.btn--outline { background: transparent; color: var(--color-primary-600); border: 2px solid var(--color-primary-600); }
+.btn--outline:hover { background: #f0fdf4; }
+
+.hero__kiwi-rings {
+  aspect-ratio: 1/1;
+  border-radius: 999px;
+  background: radial-gradient(circle at center, #f7e8a3 12%, #c8ef9e 13%, #c8ef9e 30%, #b1e08f 31%, #b1e08f 58%, #a0d07e 59%, #a0d07e 80%, #7fbf61 81%, #7fbf61 90%, #63a84d 91%);
+  box-shadow: inset 0 0 0 8px rgba(0,0,0,0.04);
+  justify-self: end;
+  width: 260px;
+  position: relative;
+}
+
+/* 首页猕猴桃籽（叠加在切片上） */
+.hero__kiwi-seeds {
+  width: 0; height: 0; position: absolute; right: 28px; top: 50%; transform: translateY(-50%);
+}
+.hero__kiwi-seeds::before {
+  content: "";
+  position: absolute; inset: -120px -120px -120px -120px;
+  background-image:
+    radial-gradient(circle 3px at 50% 28%, #000 99%, transparent 100%),
+    radial-gradient(circle 3px at 62% 36%, #000 99%, transparent 100%),
+    radial-gradient(circle 3px at 70% 50%, #000 99%, transparent 100%),
+    radial-gradient(circle 3px at 62% 64%, #000 99%, transparent 100%),
+    radial-gradient(circle 3px at 50% 72%, #000 99%, transparent 100%),
+    radial-gradient(circle 3px at 38% 64%, #000 99%, transparent 100%),
+    radial-gradient(circle 3px at 30% 50%, #000 99%, transparent 100%),
+    radial-gradient(circle 3px at 38% 36%, #000 99%, transparent 100%),
+    radial-gradient(circle 3px at 50% 18%, #000 99%, transparent 100%),
+    radial-gradient(circle 3px at 50% 82%, #000 99%, transparent 100%);
+  background-repeat: no-repeat;
+}
+
+.modules {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 22px;
+}
+.module-card {
+  background: #fff;
+  border: 1px solid #eef2f7;
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-1);
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .2s ease;
+}
+.module-card:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.10); }
+.module-card__icon { font-size: 34px; }
+.module-card__title { margin: 10px 0 8px; font-size: 18px; }
+.module-card__desc { margin: 0; color: var(--color-muted); }
+
+.site-footer { margin-top: auto; padding: 22px; text-align: center; color: var(--color-muted); }
+
+/* 通用返回按钮（除首页外使用） */
+.back-bar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: #ffffffcc;
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid #eef2f7;
+}
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-primary-600);
+  text-decoration: none;
+  padding: 12px 16px;
+}
+.back-btn__icon {
+  width: 18px; height: 18px;
+  border-left: 2px solid var(--color-primary-600);
+  border-bottom: 2px solid var(--color-primary-600);
+  transform: rotate(45deg);
+}
+
+/* 布局容器 */
+.container { max-width: 1080px; margin: 0 auto; padding: 16px; }
+
+/* 简易网格与卡片 */
+.grid { display: grid; gap: 16px; }
+.grid--2 { grid-template-columns: repeat(2, 1fr); }
+.grid--3 { grid-template-columns: repeat(3, 1fr); }
+.card { background: #fff; border: 1px solid #eef2f7; border-radius: 12px; padding: 16px; box-shadow: var(--shadow-1); }
+
+/* 徽章/价格/积分 */
+.badge { display: inline-block; padding: 4px 8px; border-radius: 999px; font-size: 12px; background: #f0fdf4; color: var(--color-primary-600); }
+.price { font-weight: 700; color: #111827; }
+.points { color: #065f46; font-weight: 600; }
+
+/* 表单 */
+.form { display: grid; gap: 12px; }
+.input { width: 100%; padding: 10px 12px; border-radius: 10px; border: 1px solid #e5e7eb; }
+.actions { display: flex; gap: 10px; align-items: center; }
+
+/* 占位图样式（若无真实图片） */
+.placeholder {
+  width: 100%;
+  aspect-ratio: 1.2/1;
+  border-radius: 12px;
+  background: repeating-linear-gradient(45deg, #f8fafc, #f8fafc 10px, #f1f5f9 10px, #f1f5f9 20px);
+  border: 1px dashed #cbd5e1;
+  display: grid; place-items: center;
+  color: #64748b;
+}
+
+/* 登录/注册加大版样式（仅该页生效的类名） */
+.auth-layout { display:grid; place-items:center; }
+.auth-card { max-width: 560px; width: 100%; margin: 10px auto; padding: 28px 24px; }
+.auth-card h2 { text-align: center; margin-top: 6px; margin-bottom: 12px; }
+.auth-card .input { padding: 14px 14px; font-size: 16px; }
+.auth-card .btn { padding: 12px 16px; font-size: 16px; }
+.auth-card .actions { justify-content: center; }
+

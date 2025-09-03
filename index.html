@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>甜言猕语 - 首页</title>
+  <link rel="icon" type="image/svg+xml" href="./assets/icons/kiwi.svg">
+  <link rel="stylesheet" href="./styles/theme.css">
+  <meta name="theme-color" content="#2ca66f">
+  <meta name="description" content="甜言猕语 - 猕猴桃文创与认养平台，积分商城与果树成长互动。">
+</head>
+<body class="page page--home">
+  <header class="site-header">
+    <div class="brand">
+      <img class="brand__logo" src="./assets/icons/kiwi.svg" alt="甜言猕语标志">
+      <h1 class="brand__title">甜言猕语</h1>
+    </div>
+    <nav class="top-nav">
+      <a class="top-nav__link" href="./pages/login.html">登录</a>
+      <a class="top-nav__link" href="./pages/shop.html">商城</a>
+      <a class="top-nav__link" href="./pages/space.html">个人空间</a>
+    </nav>
+  </header>
+
+  <main class="home">
+    <section class="hero">
+      <div class="hero__content">
+        <h2 class="hero__title">甜言猕语</h2>
+        <p class="hero__subtitle">文创好物 · 果树认养 · 成长互动</p>
+        <div class="hero__cta">
+          <a class="btn btn--primary" href="./pages/login.html">登录/注册</a>
+          <a class="btn btn--outline" href="./pages/shop.html">进入商城</a>
+        </div>
+      </div>
+      <div class="hero__kiwi-rings" aria-hidden="true"></div>
+    </section>
+
+    <section class="modules">
+      <article class="module-card" onclick="window.location.href='./pages/login.html'">
+        <div class="module-card__icon">
+          <span class="emoji">🔐</span>
+        </div>
+        <h3 class="module-card__title">登录/注册</h3>
+        <p class="module-card__desc">绑定手机号，登录同步到个人空间</p>
+      </article>
+
+      <article class="module-card" onclick="window.location.href='./pages/shop.html'">
+        <div class="module-card__icon">
+          <span class="emoji">🛒</span>
+        </div>
+        <h3 class="module-card__title">平台购物</h3>
+        <p class="module-card__desc">文创周边与虚拟道具，积分结算</p>
+      </article>
+
+      <article class="module-card" onclick="window.location.href='./pages/space.html'">
+        <div class="module-card__icon">
+          <span class="emoji">🌱</span>
+        </div>
+        <h3 class="module-card__title">个人空间</h3>
+        <p class="module-card__desc">果树认领与成长，签到领积分</p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2025 甜言猕语</p>
+  </footer>
+
+  <script src="./scripts/main.js"></script>
+</body>
+</html>
+

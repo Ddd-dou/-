@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>商城 - 甜言猕语</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/kiwi.svg">
+  <link rel="stylesheet" href="../styles/theme.css">
+</head>
+<body class="page">
+  <div class="back-bar">
+    <a class="back-btn" href="../index.html"><i class="back-btn__icon"></i> 返回</a>
+  </div>
+  <main class="container">
+    <h2>平台购物</h2>
+    <div class="actions" style="margin-bottom:12px;">
+      <a class="btn btn--primary" href="./cart.html">前往购物车</a>
+      <span class="badge">当前积分：<span id="points">0</span></span>
+    </div>
+
+    <h3>实物商品 · 猕猴桃文创</h3>
+    <div class="grid grid--2" id="physical-list">
+      <div class="card">
+        <img src="../../网页/image%20imgs/图片6.png" alt="“甜言猕语”透卡 实物参考图" style="width:80%; height:260px; border-radius:12px; border:1px solid #e5e7eb; object-fit:contain; display:block; margin:0 auto 12px;" />
+        <h4>“甜言猕语”透卡</h4>
+        <p>
+          <span class="price">¥15</span>
+          或 <span class="points">3000积分</span>
+        </p>
+        <div class="actions">
+          <button class="btn btn--primary" data-sku="tk" data-name="透卡" data-price="15" data-points="3000">加入购物车</button>
+        </div>
+      </div>
+      <div class="card">
+        <img src="../../网页/image%20imgs/图片5.png" alt="猕猴桃IP玩偶 实物参考图" style="width:80%; height:260px; border-radius:12px; border:1px solid #e5e7eb; object-fit:contain; display:block; margin:0 auto 12px;" />
+        <h4>猕猴桃IP玩偶</h4>
+        <p>
+          <span class="price">¥40</span>
+          或 <span class="points">5000积分</span>
+        </p>
+        <div class="actions">
+          <button class="btn btn--primary" data-sku="wd" data-name="玩偶" data-price="40" data-points="5000">加入购物车</button>
+        </div>
+      </div>
+      <div class="card">
+        <img src="../../网页/image%20imgs/图片7.png" alt="飞行棋 参考图" style="width:80%; height:260px; border-radius:12px; border:1px solid #e5e7eb; object-fit:contain; display:block; margin:0 auto 12px;" />
+        <h4>飞行棋</h4>
+        <p>
+          <span class="price">¥20</span>
+          或 <span class="points">4000积分</span>
+        </p>
+        <div class="actions">
+          <button class="btn btn--primary" data-sku="fxq" data-name="飞行棋" data-price="20" data-points="4000">加入购物车</button>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:20px;">虚拟商品 · 果树道具（积分）</h3>
+    <div class="grid grid--3" id="virtual-list">
+      <div class="card">
+        <img src="../assets/ai/nyy.svg" alt="营养液 图标" style="width:66.66%; aspect-ratio:1/1; border-radius:12px; border:1px solid #e5e7eb; display:block; margin:0 auto;" />
+        <h4>营养液</h4>
+        <p><span class="points">50积分</span></p>
+        <div class="actions">
+          <button class="btn btn--primary" data-sku="nyy" data-name="营养液" data-points="50">加入购物车</button>
+        </div>
+      </div>
+      <div class="card">
+        <img src="../assets/ai/fl.svg" alt="肥料 图标" style="width:66.66%; aspect-ratio:1/1; border-radius:12px; border:1px solid #e5e7eb; display:block; margin:0 auto;" />
+        <h4>肥料</h4>
+        <p><span class="points">100积分</span></p>
+        <div class="actions">
+          <button class="btn btn--primary" data-sku="fl" data-name="肥料" data-points="100">加入购物车</button>
+        </div>
+      </div>
+      <div class="card">
+        <img src="../assets/ai/yg.svg" alt="阳光 图标" style="width:66.66%; aspect-ratio:1/1; border-radius:12px; border:1px solid #e5e7eb; display:block; margin:0 auto;" />
+        <h4>阳光</h4>
+        <p><span class="points">30积分</span></p>
+        <div class="actions">
+          <button class="btn btn--primary" data-sku="yg" data-name="阳光" data-points="30">加入购物车</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <a class="btn btn--primary" style="position:fixed; right:16px; bottom:16px; border-radius:999px; padding:14px 16px;" href="./cart.html">🛒 购物车</a>
+
+  <script src="../scripts/main.js"></script>
+  <script src="../scripts/shop.js"></script>
+</body>
+</html>
+

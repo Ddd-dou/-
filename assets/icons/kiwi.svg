@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" aria-hidden="true">
+  <defs>
+    <radialGradient id="g" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#f6e089"/>
+      <stop offset="28%" stop-color="#f6e089"/>
+      <stop offset="29%" stop-color="#c8ef9e"/>
+      <stop offset="55%" stop-color="#a8df87"/>
+      <stop offset="80%" stop-color="#7fc766"/>
+      <stop offset="100%" stop-color="#63a84d"/>
+    </radialGradient>
+  </defs>
+  <circle cx="128" cy="128" r="118" fill="#8a5b33"/>
+  <circle cx="128" cy="128" r="110" fill="#9b6b3f"/>
+  <circle cx="128" cy="128" r="100" fill="url(#g)"/>
+  <circle cx="128" cy="128" r="38" fill="#f8eaa6"/>
+  <!-- 黑色籽：由圆心向外多圈扩散分布 -->
+  <g fill="#000000">
+    <!-- 内圈 r=22 -->
+    <circle cx="128" cy="106" r="3"/>
+    <circle cx="145" cy="112" r="3"/>
+    <circle cx="150" cy="128" r="3"/>
+    <circle cx="145" cy="144" r="3"/>
+    <circle cx="128" cy="150" r="3"/>
+    <circle cx="111" cy="144" r="3"/>
+    <circle cx="106" cy="128" r="3"/>
+    <circle cx="111" cy="112" r="3"/>
+    <!-- 第二圈 r=36 -->
+    <circle cx="128" cy="92" r="3"/>
+    <circle cx="155" cy="101" r="3"/>
+    <circle cx="170" cy="128" r="3"/>
+    <circle cx="155" cy="155" r="3"/>
+    <circle cx="128" cy="170" r="3"/>
+    <circle cx="101" cy="155" r="3"/>
+    <circle cx="86" cy="128" r="3"/>
+    <circle cx="101" cy="101" r="3"/>
+    <!-- 第三圈 r=52 -->
+    <circle cx="128" cy="76" r="3"/>
+    <circle cx="160" cy="88" r="3"/>
+    <circle cx="180" cy="128" r="3"/>
+    <circle cx="160" cy="168" r="3"/>
+    <circle cx="128" cy="180" r="3"/>
+    <circle cx="96" cy="168" r="3"/>
+    <circle cx="76" cy="128" r="3"/>
+    <circle cx="96" cy="88" r="3"/>
+  </g>
+</svg>
+

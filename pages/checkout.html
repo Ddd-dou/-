@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>确认付款 - 甜言猕语</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/kiwi.svg">
+  <link rel="stylesheet" href="../styles/theme.css">
+</head>
+<body class="page">
+  <div class="back-bar">
+    <a class="back-btn" href="./cart.html"><i class="back-btn__icon"></i> 返回</a>
+  </div>
+  <main class="container">
+    <h2>确认付款</h2>
+    <div class="card">
+      <p>请选择支付方式：</p>
+      <div class="actions">
+        <button class="btn btn--primary" id="pay-points">积分支付</button>
+        <button class="btn btn--outline" id="pay-money" title="示例：仅提示成功">金额支付</button>
+      </div>
+      <p class="badge">当前积分：<span id="points">0</span></p>
+      <div style="margin-top:8px;">
+        <div>积分合计：<span class="points" id="sumPoints">0</span></div>
+        <div>金额合计：<span class="price" id="sumPrice">¥0</span></div>
+      </div>
+    </div>
+  </main>
+  <script src="../scripts/main.js"></script>
+  <script src="../scripts/checkout.js"></script>
+</body>
+</html>
+

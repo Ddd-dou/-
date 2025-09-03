@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160">
+  <!-- 猕猴桃IP毛绒玩偶：二头身，约40cm效果示意 -->
+  <defs>
+    <radialGradient id="fur" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#7b563c"/>
+      <stop offset="100%" stop-color="#6b4b33"/>
+    </radialGradient>
+  </defs>
+  <circle cx="80" cy="54" r="30" fill="url(#fur)"/>
+  <rect x="52" y="80" width="56" height="54" rx="18" fill="url(#fur)"/>
+  <circle cx="66" cy="50" r="6" fill="#2e2e2e"/>
+  <circle cx="94" cy="50" r="6" fill="#2e2e2e"/>
+  <rect x="60" y="90" width="40" height="30" rx="12" fill="#8b6a46"/>
+  <!-- 肚子猕猴桃截面 -->
+  <circle cx="80" cy="105" r="14" fill="#c8ef9e" stroke="#63a84d"/>
+  <circle cx="80" cy="105" r="5" fill="#f6e089"/>
+</svg>
+

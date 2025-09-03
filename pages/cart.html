@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>购物车 - 甜言猕语</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/kiwi.svg">
+  <link rel="stylesheet" href="../styles/theme.css">
+</head>
+<body class="page">
+  <div class="back-bar">
+    <a class="back-btn" href="./shop.html"><i class="back-btn__icon"></i> 返回</a>
+  </div>
+  <main class="container">
+    <div class="actions" style="justify-content: space-between;">
+      <h2>购物车</h2>
+      <a class="btn btn--outline" href="./chat.html">联系客服</a>
+    </div>
+    <div id="list" class="grid"></div>
+    <div class="card" style="margin-top:12px; display:flex; justify-content:space-between; align-items:center;">
+      <div>
+        <div>积分合计：<span class="points" id="sumPoints">0</span></div>
+        <div>金额合计：<span class="price" id="sumPrice">¥0</span></div>
+      </div>
+      <div class="actions">
+        <button class="btn btn--outline" id="clear">清空</button>
+        <a class="btn btn--primary" href="./checkout.html">去结算</a>
+      </div>
+    </div>
+  </main>
+  <script src="../scripts/main.js"></script>
+  <script src="../scripts/cart.js"></script>
+</body>
+</html>
+

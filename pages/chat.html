@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>客服聊天 - 甜言猕语</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/kiwi.svg">
+  <link rel="stylesheet" href="../styles/theme.css">
+  <style>
+    .chat { display: grid; grid-template-rows: auto 1fr auto; height: calc(100vh - 60px); }
+    .chat__header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-bottom: 1px solid #eef2f7; }
+    .chat__avatar { width:36px; height:36px; border-radius:999px; overflow:hidden; background:#f0f0f0; display:grid; place-items:center; }
+    .chat__avatar img { width:100%; height:100%; object-fit:cover; object-position:60% 50%; }
+    .chat__list { overflow:auto; padding:12px; display:grid; gap:10px; background: #f6fff8; }
+    .msg { max-width:68%; padding:10px 12px; border-radius:12px; box-shadow: var(--shadow-1); }
+    .msg--left { justify-self: start; background: #fff; border:1px solid #e5e7eb; }
+    .msg--right { justify-self: end; background: #dcfce7; border:1px solid #bbf7d0; }
+    .chat__input { display:flex; gap:8px; padding:12px; border-top:1px solid #eef2f7; background:#fff; }
+    .chat__input input { flex:1; }
+  </style>
+  </head>
+<body class="page">
+  <div class="back-bar">
+    <a class="back-btn" href="./cart.html"><i class="back-btn__icon"></i> 返回</a>
+  </div>
+  <main class="chat">
+    <div class="chat__header">
+      <div class="chat__avatar"><img src="../../网页/image%20imgs/微信图片_20250507213459.jpg" alt="客服头像"></div>
+      <div>
+        <div style="font-weight:700;">客服·猕猕糊糊</div>
+      </div>
+    </div>
+    <div id="chatList" class="chat__list"></div>
+    <div class="chat__input">
+      <input class="input" id="msg" placeholder="请输入消息..." />
+      <button class="btn btn--primary" id="send">发送</button>
+    </div>
+  </main>
+  <script src="../scripts/chat.js"></script>
+</body>
+</html>
+
