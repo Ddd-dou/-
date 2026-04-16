@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>个人空间 - 甜言猕语</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #FDFBF7;
+            font-family: 'Nunito', 'Quicksand', system-ui, sans-serif;
+            padding: 20px;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(45deg, rgba(163,201,90,0.08) 0px, rgba(163,201,90,0.08) 2px, transparent 2px, transparent 8px),
+                repeating-linear-gradient(135deg, rgba(136,176,75,0.06) 0px, rgba(136,176,75,0.06) 2px, transparent 2px, transparent 8px);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        :root {
+            --green-dark: #88B04B;
+            --green-mid: #A3C95A;
+            --green-light: #D3E0B3;
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 28px;
+            color: var(--green-dark);
+            background: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 4px 4px 0 rgba(0,0,0,0.06);
+            cursor: pointer;
+            z-index: 99;
+            text-decoration: none;
+            border: 2px dashed var(--green-mid);
+            transition: 0.2s;
+        }
+        .back-btn:hover {
+            transform: translateX(-2px);
+            box-shadow: 6px 6px 0 rgba(0,0,0,0.08);
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 80px auto 30px;
+            background: white;
+            border-radius: 48px;
+            padding: 30px 25px;
+            border: 2px dashed var(--green-mid);
+            box-shadow: 6px 6px 0 rgba(0,0,0,0.06);
+        }
+
+        .avatar {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .avatar img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--green-dark);
+            box-shadow: 4px 4px 0 rgba(0,0,0,0.06);
+        }
+
+        .guest-tag {
+            background: #F5F9EE;
+            color: var(--green-dark);
+            padding: 8px;
+            border-radius: 30px;
+            text-align: center;
+            font-size: 12px;
+            margin-bottom: 20px;
+            border: 1px dashed var(--green-mid);
+        }
+
+        .module {
+            background: #F9F9F0;
+            margin: 15px 0;
+            padding: 18px 20px;
+            border-radius: 60px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: 0.2s;
+            border: 1px dashed var(--green-mid);
+            box-shadow: 3px 3px 0 rgba(0,0,0,0.04);
+        }
+        .module:hover {
+            transform: translateY(-2px);
+            box-shadow: 5px 5px 0 rgba(0,0,0,0.08);
+        }
+        .module i {
+            font-size: 28px;
+            color: var(--green-dark);
+            width: 40px;
+        }
+        .module span {
+            font-size: 18px;
+            font-weight: 500;
+            color: #4a5b2e;
+        }
+
+        .points-badge {
+            background: var(--green-dark);
+            color: white;
+            padding: 12px;
+            border-radius: 60px;
+            text-align: center;
+            margin-top: 20px;
+            font-weight: bold;
+            box-shadow: 4px 4px 0 rgba(0,0,0,0.08);
+        }
+
+        footer {
+            text-align: center;
+            font-size: 12px;
+            color: #aaa;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+<a class="back-btn" href="index.html">←</a>
+<div class="container">
+    <div class="avatar">
+        <img src="avatar.png" alt="头像" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22%238B5E3C%22/%3E%3Ctext x=%2250%22 y=%2270%22 text-anchor=%22middle%22 font-size=%2240%22 fill=%22white%22%3E🐵%3C/text%3E%3C/svg%3E'">
+    </div>
+    <div class="guest-tag" id="guestTag">🍃 当前为游客模式 | 注册后可保存数据</div>
+    <div class="module" onclick="alert('个人资料：可编辑昵称、手机等')"><i class="fas fa-user-circle"></i> <span>个人资料</span></div>
+    <div class="module" onclick="alert('历史订单：暂无订单')"><i class="fas fa-history"></i> <span>历史订单</span></div>
+    <div class="module" onclick="alert('账户安全：修改密码')"><i class="fas fa-shield-alt"></i> <span>账户安全</span></div>
+    <div class="module" onclick="alert('隐私设置：谁可以看我的动态')"><i class="fas fa-lock"></i> <span>隐私设置</span></div>
+    <div class="points-badge" id="pointsShow">🍃 当前积分: --</div>
+</div>
+<footer>© 2026 甜言猕语 | 我的甜蜜果园</footer>
+<script>
+    let user = JSON.parse(localStorage.getItem('kiwi_user'));
+    if(!user) {
+        user = { phone: 'guest', username: '游客', password: '', points: 300, currentTree: null, isGuest: true };
+        localStorage.setItem('kiwi_user', JSON.stringify(user));
+    }
+    if(user.isGuest) {
+        document.getElementById('guestTag').innerHTML = '🍃 当前为游客模式 | 注册后可保存数据';
+    }
+    let points = user?.points || 300;
+    document.getElementById('pointsShow').innerText = `🍃 当前积分: ${points}`;
+    if(!localStorage.getItem('kiwi_tree')) {
+        localStorage.setItem('kiwi_tree', JSON.stringify({ weight_g: 0, lastSignDate: null, currentTreeId: null }));
+    }
+</script>
+</body>
+</html>

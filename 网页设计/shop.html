@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>甜言猕语 - 购物页面</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #FDFBF7;
+            font-family: 'Nunito', 'Quicksand', system-ui, sans-serif;
+            padding: 20px;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(45deg, rgba(163,201,90,0.08) 0px, rgba(163,201,90,0.08) 2px, transparent 2px, transparent 8px),
+                repeating-linear-gradient(135deg, rgba(136,176,75,0.06) 0px, rgba(136,176,75,0.06) 2px, transparent 2px, transparent 8px);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        :root {
+            --green-dark: #88B04B;
+            --green-mid: #A3C95A;
+            --green-light: #D3E0B3;
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 28px;
+            color: var(--green-dark);
+            background: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 4px 4px 0 rgba(0,0,0,0.06);
+            cursor: pointer;
+            z-index: 99;
+            text-decoration: none;
+            border: 2px dashed var(--green-mid);
+            transition: 0.2s;
+        }
+        .back-btn:hover {
+            transform: translateX(-2px);
+            box-shadow: 6px 6px 0 rgba(0,0,0,0.08);
+        }
+
+        .shop-layout {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            max-width: 1300px;
+            margin: 80px auto 30px;
+        }
+
+        .products {
+            flex: 2;
+            min-width: 250px;
+        }
+        .products h3 {
+            color: var(--green-dark);
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+
+        .cart {
+            flex: 1;
+            min-width: 250px;
+            background: white;
+            border-radius: 40px;
+            padding: 20px;
+            border: 2px dashed var(--green-mid);
+            box-shadow: 6px 6px 0 rgba(0,0,0,0.06);
+        }
+        .cart h3 {
+            color: var(--green-dark);
+            margin-bottom: 15px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 32px;
+            padding: 15px;
+            text-align: center;
+            border: 1px dashed var(--green-mid);
+            box-shadow: 4px 4px 0 rgba(0,0,0,0.06);
+            transition: 0.2s;
+        }
+        .product-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 6px 6px 0 rgba(0,0,0,0.08);
+        }
+        .product-img {
+            font-size: 80px;
+            margin-bottom: 10px;
+        }
+        .product-card .product-img img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 1px solid var(--green-mid);
+        }
+        .product-card .price {
+            color: var(--green-dark);
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .qty-control {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin-top: 10px;
+        }
+        .qty-btn {
+            background: var(--green-dark);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+        }
+        .qty-btn.disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            border-bottom: 1px dashed var(--green-mid);
+            padding-bottom: 10px;
+        }
+        .cart-checkbox {
+            width: 22px;
+            height: 22px;
+            accent-color: var(--green-dark);
+        }
+        .cart-item-img {
+            width: 50px;
+            text-align: center;
+        }
+        .cart-item-img img {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .checkout {
+            margin-top: 20px;
+            background: var(--green-dark);
+            color: white;
+            padding: 14px;
+            text-align: center;
+            border-radius: 60px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 4px 4px 0 rgba(0,0,0,0.08);
+            transition: 0.2s;
+        }
+        .checkout:hover {
+            transform: translateY(-2px);
+            box-shadow: 6px 6px 0 rgba(0,0,0,0.1);
+        }
+
+        footer {
+            text-align: center;
+            font-size: 12px;
+            color: #aaa;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+<a class="back-btn" href="index.html">←</a>
+<div class="shop-layout">
+    <div class="products">
+        <h3>🥝 甜言猕语好物</h3>
+        <div class="product-grid" id="productList"></div>
+    </div>
+    <div class="cart">
+        <h3>🛒 购物车</h3>
+        <div id="cartItems"></div>
+        <div class="checkout" id="checkoutBtn">结账 (选中商品)</div>
+    </div>
+</div>
+<footer>🎁 积分兑换更划算 | 满额包邮 | 甜言猕语文创</footer>
+
+<script>
+    let user = JSON.parse(localStorage.getItem('kiwi_user'));
+    if(!user) {
+        user = { phone: 'guest', username: '游客', password: '', points: 300, currentTree: null, isGuest: true };
+        localStorage.setItem('kiwi_user', JSON.stringify(user));
+    }
+    if(!localStorage.getItem('kiwi_tree')) {
+        localStorage.setItem('kiwi_tree', JSON.stringify({ weight_g: 0, lastSignDate: null, currentTreeId: null }));
+    }
+
+    const products = [
+        { id:1, name:'「甜言猕语」透卡', pricePoints:3000, priceYuan:15, img:'touka.jpg', type:'real', desc:'透明亚克力板+卡通猴子IP' },
+        { id:2, name:'猕猴桃IP玩偶', pricePoints:5000, priceYuan:40, img:'wanou.jpg', type:'real', desc:'毛绒玩偶约40cm' },
+        { id:3, name:'营养液', pricePoints:50, type:'virtual', weightAdd:100, icon:'🧪' },
+        { id:4, name:'肥料', pricePoints:100, type:'virtual', weightAdd:200, icon:'🌾' },
+        { id:5, name:'阳光', pricePoints:30, type:'virtual', weightAdd:50, icon:'☀️' }
+    ];
+
+    let cart = JSON.parse(localStorage.getItem('kiwi_cart')) || [];
+    function saveCart(){ localStorage.setItem('kiwi_cart', JSON.stringify(cart)); }
+
+    function getProductImage(p) {
+        if(p.img) {
+            return `<div class="product-img"><img src="${p.img}" alt="${p.name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23D3E0B3%22/%3E%3Ctext x=%2250%22 y=%2265%22 text-anchor=%22middle%22 font-size=%2240%22%3E🥝%3C/text%3E%3C/svg%3E'"></div>`;
+        } else {
+            return `<div class="product-img">${p.icon || '🍃'}</div>`;
+        }
+    }
+
+    function getCartImage(p) {
+        if(p && p.img) {
+            return `<img src="${p.img}" style="width:40px;height:40px;object-fit:cover;border-radius:8px;" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23D3E0B3%22/%3E%3Ctext x=%2250%22 y=%2265%22 text-anchor=%22middle%22 font-size=%2240%22%3E🥝%3C/text%3E%3C/svg%3E'">`;
+        }
+        return p?.icon || '🍃';
+    }
+
+    function renderProducts(){
+        const container = document.getElementById('productList');
+        container.innerHTML = products.map(p => {
+            let item = cart.find(c=>c.id===p.id);
+            let qty = item ? item.qty : 0;
+            let minusDisabled = qty===0 ? 'disabled' : '';
+            return `<div class="product-card">
+                ${getProductImage(p)}
+                <div><strong>${p.name}</strong></div>
+                <div class="price">${p.pricePoints}积分</div>
+                <div class="qty-control">
+                    <div class="qty-btn ${minusDisabled}" data-id="${p.id}" data-op="minus">-</div>
+                    <span>${qty}</span>
+                    <div class="qty-btn" data-id="${p.id}" data-op="plus">+</div>
+                </div>
+            </div>`;
+        }).join('');
+        
+        document.querySelectorAll('.qty-btn').forEach(btn=>{
+            btn.addEventListener('click', (e)=>{
+                let id = parseInt(btn.dataset.id);
+                let op = btn.dataset.op;
+                let exist = cart.find(c=>c.id===id);
+                if(op==='plus'){
+                    if(exist) exist.qty++;
+                    else cart.push({ id, name: products.find(p=>p.id===id).name, qty:1, pricePoints: products.find(p=>p.id===id).pricePoints, type: products.find(p=>p.id===id).type });
+                } else {
+                    if(exist && exist.qty>0) exist.qty--;
+                    if(exist && exist.qty===0) cart = cart.filter(c=>c.id!==id);
+                }
+                saveCart();
+                renderProducts();
+                renderCart();
+            });
+        });
+    }
+
+    function renderCart(){
+        const container = document.getElementById('cartItems');
+        if(cart.length===0){ container.innerHTML='<div>🛍️ 购物车空空，去加点宝贝吧</div>'; return; }
+        container.innerHTML = cart.map(item=>{
+            let prod = products.find(p=>p.id===item.id);
+            return `<div class="cart-item">
+                <input type="checkbox" class="cart-checkbox" data-id="${item.id}" ${item.checked ? 'checked' : ''}>
+                <div class="cart-item-img">${getCartImage(prod)}</div>
+                <div style="flex:1">${item.name}</div>
+                <div>x ${item.qty}</div>
+            </div>`;
+        }).join('');
+        
+        document.querySelectorAll('.cart-checkbox').forEach(cb=>{
+            cb.addEventListener('change', (e)=>{
+                let id = parseInt(cb.dataset.id);
+                let item = cart.find(c=>c.id===id);
+                if(item) item.checked = cb.checked;
+                saveCart();
+            });
+        });
+    }
+
+    document.getElementById('checkoutBtn').addEventListener('click',()=>{
+        let selected = cart.filter(c=>c.checked===true);
+        if(selected.length===0){ alert('请选择商品'); return; }
+        let user = JSON.parse(localStorage.getItem('kiwi_user'));
+        if(!user){
+            user = { phone: 'guest', username: '游客', password: '', points: 300, currentTree: null, isGuest: true };
+            localStorage.setItem('kiwi_user', JSON.stringify(user));
+        }
+        let totalPoints = selected.reduce((sum,item)=> sum + (item.pricePoints * item.qty),0);
+        if(user.points < totalPoints){ alert(`积分不足！需要${totalPoints}积分，当前${user.points}`); return; }
+        user.points -= totalPoints;
+        localStorage.setItem('kiwi_user', JSON.stringify(user));
+        let tree = JSON.parse(localStorage.getItem('kiwi_tree')) || { weight_g:0 };
+        selected.forEach(item=>{
+            let prod = products.find(p=>p.id===item.id);
+            if(prod.type==='virtual' && prod.weightAdd){
+                tree.weight_g += prod.weightAdd * item.qty;
+            }
+        });
+        localStorage.setItem('kiwi_tree', JSON.stringify(tree));
+        cart = cart.filter(c=> !selected.includes(c) || c.type==='real');
+        saveCart();
+        alert('购买成功！积分已扣除，果树克重增加');
+        renderProducts();
+        renderCart();
+    });
+
+    renderProducts();
+    renderCart();
+</script>
+</body>
+</html>

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>甜言猕语 - 果树种植</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #FDFBF7;
+            font-family: 'Nunito', 'Quicksand', system-ui, sans-serif;
+            padding: 20px;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(45deg, rgba(163,201,90,0.08) 0px, rgba(163,201,90,0.08) 2px, transparent 2px, transparent 8px),
+                repeating-linear-gradient(135deg, rgba(136,176,75,0.06) 0px, rgba(136,176,75,0.06) 2px, transparent 2px, transparent 8px);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        :root {
+            --green-dark: #88B04B;
+            --green-mid: #A3C95A;
+            --green-light: #D3E0B3;
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 28px;
+            color: var(--green-dark);
+            background: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 4px 4px 0 rgba(0,0,0,0.06);
+            cursor: pointer;
+            z-index: 99;
+            text-decoration: none;
+            border: 2px dashed var(--green-mid);
+            transition: 0.2s;
+        }
+        .back-btn:hover {
+            transform: translateX(-2px);
+            box-shadow: 6px 6px 0 rgba(0,0,0,0.08);
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 80px auto;
+            background: white;
+            border-radius: 50px;
+            padding: 25px;
+            border: 2px dashed var(--green-mid);
+            box-shadow: 6px 6px 0 rgba(0,0,0,0.06);
+        }
+
+        .guest-tag {
+            background: #F5F9EE;
+            color: var(--green-dark);
+            padding: 8px;
+            border-radius: 30px;
+            text-align: center;
+            font-size: 12px;
+            margin-bottom: 15px;
+            border: 1px dashed var(--green-mid);
+        }
+
+        .points-show {
+            background: #E6F0DA;
+            padding: 12px;
+            border-radius: 40px;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: var(--green-dark);
+        }
+
+        .tree-list {
+            margin-bottom: 25px;
+            border-bottom: 1px dashed var(--green-mid);
+            padding-bottom: 15px;
+        }
+        .tree-list h3 {
+            color: var(--green-dark);
+            margin-bottom: 10px;
+        }
+        .tree-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background: #F9F9F0;
+            margin: 8px 0;
+            border-radius: 30px;
+            border: 1px dashed var(--green-mid);
+        }
+        .tree-item button {
+            background: var(--green-dark);
+            color: white;
+            border: none;
+            padding: 6px 15px;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 2px 2px 0 rgba(0,0,0,0.06);
+        }
+        .tree-item button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .tree-stage {
+            text-align: center;
+            font-size: 120px;
+            margin: 20px 0;
+            animation: sway 2s infinite ease-in-out;
+            cursor: pointer;
+            filter: drop-shadow(4px 4px 0 rgba(0,0,0,0.06));
+        }
+        @keyframes sway {
+            0%,100%{ transform: rotate(0deg); }
+            50%{ transform: rotate(3deg); }
+        }
+
+        .weight-info {
+            text-align: center;
+            margin: 15px 0;
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--green-dark);
+        }
+        .weight-bar {
+            background: #eee;
+            border-radius: 20px;
+            height: 20px;
+            margin: 15px 0;
+            overflow: hidden;
+            border: 1px solid var(--green-mid);
+        }
+        .weight-fill {
+            background: var(--green-dark);
+            width: 0%;
+            height: 100%;
+            border-radius: 20px;
+        }
+
+        .actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 25px 0;
+            justify-content: center;
+        }
+        .action-btn {
+            background: var(--green-light);
+            padding: 10px 20px;
+            border-radius: 60px;
+            cursor: pointer;
+            font-weight: bold;
+            border: 1px dashed var(--green-mid);
+            font-size: 16px;
+            transition: 0.2s;
+            box-shadow: 3px 3px 0 rgba(0,0,0,0.04);
+        }
+        .action-btn:hover {
+            background: var(--green-mid);
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        .sign-btn {
+            background: var(--green-dark);
+            color: white;
+            padding: 12px;
+            text-align: center;
+            border-radius: 60px;
+            cursor: pointer;
+            margin: 10px 0;
+            font-weight: bold;
+            box-shadow: 4px 4px 0 rgba(0,0,0,0.08);
+            transition: 0.2s;
+        }
+        .sign-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 6px 6px 0 rgba(0,0,0,0.1);
+        }
+
+        .harvest-btn {
+            background: #F9E45B;
+            color: #6B8E23;
+            padding: 15px;
+            text-align: center;
+            border-radius: 60px;
+            cursor: pointer;
+            margin: 20px 0;
+            font-weight: bold;
+            font-size: 18px;
+            border: 1px dashed var(--green-mid);
+            box-shadow: 4px 4px 0 rgba(0,0,0,0.08);
+            transition: 0.2s;
+        }
+        .harvest-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        footer {
+            text-align: center;
+            font-size: 12px;
+            color: #aaa;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+<a class="back-btn" href="index.html">←</a>
+<div class="container">
+    <h2 style="color: var(--green-dark); text-align: center;">🌳 甜言猕语 · 果树种植</h2>
+    
+    <div class="guest-tag" id="guestTag">🍃 游客模式 | 数据保存在本浏览器</div>
+    <div class="points-show" id="pointsDisplay">🍃 当前积分: --</div>
+    
+    <div class="tree-list">
+        <h3>🌱 认领线下果树</h3>
+        <div id="treeList"></div>
+    </div>
+    
+    <div class="tree-stage" id="treeEmoji" onclick="alert('点击查看详情')">🌰</div>
+    <div class="weight-info" id="weightText">克重: 0g</div>
+    <div class="weight-bar"><div class="weight-fill" id="weightFill"></div></div>
+    
+    <div class="actions">
+        <button class="action-btn" id="nutrientBtn">🧪 营养液 (-50积分/+100g)</button>
+        <button class="action-btn" id="fertilizerBtn">🌾 肥料 (-100积分/+200g)</button>
+        <button class="action-btn" id="sunBtn">☀️ 阳光 (-30积分/+50g)</button>
+    </div>
+    
+    <div class="sign-btn" id="signBtn">📅 每日签到 (+100积分)</div>
+    <div id="harvestBtn" class="harvest-btn" style="display:none;">🥝 可采摘！获得2000积分 🥝</div>
+</div>
+<footer>© 甜言猕语 · 种下甜蜜，收获快乐</footer>
+
+<script>
+    let user = JSON.parse(localStorage.getItem('kiwi_user'));
+    if(!user) {
+        user = { phone: 'guest', username: '游客', password: '', points: 300, currentTree: null, isGuest: true };
+        localStorage.setItem('kiwi_user', JSON.stringify(user));
+    }
+    
+    let treeData = JSON.parse(localStorage.getItem('kiwi_tree')) || { weight_g: 0, currentTreeId: null, lastSignDate: null };
+    let points = user.points || 300;
+    
+    const trees = [
+        { id: 1, name: '阳光果园 · 一号树', location: 'A区' },
+        { id: 2, name: '阳光果园 · 二号树', location: 'B区' },
+        { id: 3, name: '甜言谷 · 三号树', location: 'C区' }
+    ];
+    
+    function saveAll() {
+        localStorage.setItem('kiwi_user', JSON.stringify({...user, points: points}));
+        localStorage.setItem('kiwi_tree', JSON.stringify(treeData));
+        updateUI();
+    }
+    
+    function getTreeStage(weight) {
+        if(weight < 100) return { emoji: '🌰', name: '种子' };
+        if(weight < 500) return { emoji: '🌱', name: '小苗(两片叶子)' };
+        if(weight < 1000) return { emoji: '🌿', name: '小苗(五片叶子)' };
+        if(weight < 2000) return { emoji: '🌳', name: '大苗' };
+        if(weight < 4000) return { emoji: '🌲', name: '大树苗' };
+        if(weight < 5000) return { emoji: '🍃🥝', name: '结果期' };
+        return { emoji: '🥝🥝🥝', name: '成熟可采摘' };
+    }
+    
+    function updateUI() {
+        document.getElementById('pointsDisplay').innerHTML = `🍃 当前积分: ${points}`;
+        let weight = treeData.weight_g || 0;
+        document.getElementById('weightText').innerHTML = `克重: ${weight}g / 5000g`;
+        let percent = Math.min(100, (weight / 5000) * 100);
+        document.getElementById('weightFill').style.width = percent + '%';
+        let stage = getTreeStage(weight);
+        document.getElementById('treeEmoji').innerHTML = stage.emoji;
+        if(weight >= 5000) {
+            document.getElementById('harvestBtn').style.display = 'block';
+        } else {
+            document.getElementById('harvestBtn').style.display = 'none';
+        }
+        
+        let treeHtml = '';
+        trees.forEach(t => {
+            let isCurrent = (treeData.currentTreeId === t.id);
+            treeHtml += `<div class="tree-item">
+                <span><strong>${t.name}</strong> (${t.location})</span>
+                ${isCurrent ? '<span style="color: #88B04B;">✅ 已认领</span>' : 
+                  `<button onclick="claimTree(${t.id})" ${treeData.currentTreeId ? 'disabled' : ''}>认领</button>`}
+            </div>`;
+        });
+        document.getElementById('treeList').innerHTML = treeHtml;
+    }
+    
+    window.claimTree = function(treeId) {
+        if(treeData.currentTreeId) { alert('您已经认领了一棵果树，需要先采摘才能认领新的！'); return; }
+        treeData.currentTreeId = treeId;
+        treeData.weight_g = 0;
+        saveAll();
+        alert('认领成功！开始种植吧~');
+    };
+    
+    function addWeight(addG, costPoints) {
+        if(!treeData.currentTreeId) { alert('请先认领一棵果树！'); return false; }
+        if(points < costPoints) { alert(`积分不足！需要${costPoints}积分`); return false; }
+        points -= costPoints;
+        treeData.weight_g = (treeData.weight_g || 0) + addG;
+        if(treeData.weight_g >= 5000) treeData.weight_g = 5000;
+        saveAll();
+        return true;
+    }
+    
+    document.getElementById('nutrientBtn').onclick = () => addWeight(100, 50);
+    document.getElementById('fertilizerBtn').onclick = () => addWeight(200, 100);
+    document.getElementById('sunBtn').onclick = () => addWeight(50, 30);
+    
+    document.getElementById('signBtn').onclick = () => {
+        let today = new Date().toDateString();
+        if(treeData.lastSignDate === today) { alert('今天已经签到过了！'); return; }
+        points += 100;
+        treeData.lastSignDate = today;
+        saveAll();
+        alert('签到成功！获得100积分');
+    };
+    
+    document.getElementById('harvestBtn').onclick = () => {
+        if(treeData.weight_g >= 5000) {
+            points += 2000;
+            treeData.weight_g = 0;
+            let oldTreeId = treeData.currentTreeId;
+            treeData.currentTreeId = null;
+            saveAll();
+            alert(`采摘成功！获得2000积分！\n您可以重新认领新的果树了~`);
+        } else {
+            alert('还未成熟，继续培育吧！');
+        }
+    };
+    
+    updateUI();
+</script>
+</body>
+</html>

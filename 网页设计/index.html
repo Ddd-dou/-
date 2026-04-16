@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>甜言猕语 - 首页</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #FDFBF7;
+            font-family: 'Nunito', 'Quicksand', system-ui, -apple-system, 'Segoe UI', sans-serif;
+            padding-bottom: 20px;
+            position: relative;
+        }
+
+        /* 手绘风格背景 - 浅米色 + 手绘纹理 */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(45deg, rgba(163,201,90,0.08) 0px, rgba(163,201,90,0.08) 2px, transparent 2px, transparent 8px),
+                repeating-linear-gradient(135deg, rgba(136,176,75,0.06) 0px, rgba(136,176,75,0.06) 2px, transparent 2px, transparent 8px);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        :root {
+            --green-dark: #88B04B;
+            --green-mid: #A3C95A;
+            --green-light: #D3E0B3;
+            --cream: #FDFBF7;
+            --white: #FFFFFF;
+            --shadow: 0 4px 12px rgba(0,0,0,0.05);
+            --radius-card: 24px;
+        }
+
+        /* 手绘猕猴桃切片装饰 */
+        .kiwi-slice {
+            position: fixed;
+            opacity: 0.12;
+            pointer-events: none;
+            z-index: 0;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, #F9E45B 20%, #A3C95A 50%, #88B04B 80%);
+            border-radius: 50%;
+            transform: rotate(var(--rot, 0deg));
+        }
+        .kiwi-slice::before {
+            content: "● ● ●";
+            position: absolute;
+            font-size: 14px;
+            color: #2c2c2c;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            letter-spacing: 6px;
+            white-space: nowrap;
+        }
+        .kiwi-slice::after {
+            content: "";
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            border-radius: 50%;
+            border: 1.5px dashed rgba(100,80,40,0.3);
+        }
+        .slice1 { top: 10%; left: -20px; transform: rotate(15deg); width: 100px; height: 100px; }
+        .slice2 { bottom: 15%; right: -30px; transform: rotate(45deg); width: 130px; height: 130px; }
+        .slice3 { top: 40%; right: 5%; transform: rotate(70deg); width: 70px; height: 70px; }
+        .slice4 { bottom: 30%; left: 5%; transform: rotate(-20deg); width: 60px; height: 60px; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* 题头样式 - 手绘感 */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            padding: 10px 20px;
+            background: #FFFFFF;
+            border-radius: 60px;
+            box-shadow: none;
+            border: 2px dashed var(--green-mid);
+            transform: rotate(-0.5deg);
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .logo-img {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: var(--green-light);
+            padding: 5px;
+            border: 2px solid var(--green-dark);
+            transform: rotate(3deg);
+        }
+        .brand-name {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--green-dark);
+            letter-spacing: 2px;
+            font-family: 'Nunito', 'Quicksand', cursive;
+        }
+        .brand-name small {
+            font-size: 24px;
+            font-weight: normal;
+            color: #F9E45B;
+        }
+        .slogan {
+            font-size: 12px;
+            color: #88B04B;
+            background: #F5F9EE;
+            padding: 6px 15px;
+            border-radius: 40px;
+            font-style: italic;
+            border: 1px solid #D3E0B3;
+            transform: rotate(1deg);
+        }
+        @media (max-width: 600px) {
+            .header {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+            }
+            .brand-name {
+                font-size: 22px;
+            }
+            .brand-name small {
+                font-size: 18px;
+            }
+            .logo-img {
+                width: 45px;
+                height: 45px;
+            }
+        }
+
+        /* 三栏卡片 */
+        .top-cards {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        .card-item {
+            background-color: var(--green-dark);
+            color: var(--cream);
+            flex: 1;
+            min-width: 100px;
+            padding: 15px 12px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 5px 5px 0 rgba(0,0,0,0.08);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        .card-item img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .card-item:hover {
+            transform: translateY(-3px) translateX(-2px);
+            box-shadow: 8px 8px 0 rgba(0,0,0,0.1);
+        }
+
+        /* 中间区域 */
+        .middle-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        /* ===== 纯圆形果树（无树叶，圆形边框）===== */
+        .left-tree {
+            flex: 1;
+            background: linear-gradient(145deg, #f5f5e6, #e9f0db);
+            border-radius: 50%;
+            padding: 30px 20px;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 6px 6px 0 rgba(0,0,0,0.06);
+            border: 1px solid var(--green-light);
+            transform: rotate(-0.3deg);
+            transition: all 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 380px;
+        }
+        .left-tree:hover {
+            transform: rotate(0deg) translateY(-3px);
+            box-shadow: 10px 10px 0 rgba(0,0,0,0.08);
+        }
+        .tree-img {
+            font-size: 100px;
+            margin: 20px 0;
+            filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.1));
+        }
+        .curved-text {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--green-dark);
+            text-align: center;
+            background: rgba(255,255,200,0.7);
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 60px;
+            border: 1px dashed var(--green-mid);
+        }
+        
+        .right-carousel {
+            flex: 1;
+            background: #FFFFFF;
+            border-radius: 32px;
+            padding: 20px;
+            box-shadow: 6px 6px 0 rgba(0,0,0,0.06);
+            border: 1px solid var(--green-light);
+            transform: rotate(0.3deg);
+        }
+        .carousel {
+            background: #d9e6c3;
+            border-radius: 24px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            overflow: hidden;
+            position: relative;
+            border: 1px dashed var(--green-mid);
+        }
+        .carousel img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .dot {
+            width: 10px;
+            height: 10px;
+            background: #ccc;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .dot.active {
+            background: #88B04B;
+            width: 20px;
+            border-radius: 10px;
+        }
+        .travel-link {
+            background: var(--green-light);
+            padding: 14px;
+            text-align: center;
+            border-radius: 60px;
+            color: var(--green-dark);
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+            border: 1px dashed var(--green-mid);
+            transition: 0.2s;
+        }
+        .travel-link:hover {
+            background: var(--green-mid);
+            color: white;
+        }
+
+        /* 三个小圆点 */
+        .features {
+            display: flex;
+            justify-content: space-around;
+            margin: 40px 0;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .feature-icon {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 60px;
+            text-align: center;
+            flex: 1;
+            min-width: 100px;
+            box-shadow: 4px 4px 0 rgba(0,0,0,0.05);
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px dashed var(--green-mid);
+        }
+        .feature-icon:hover {
+            transform: translateY(-2px);
+            box-shadow: 6px 6px 0 rgba(0,0,0,0.08);
+        }
+        .feature-icon i {
+            font-size: 32px;
+            color: var(--green-dark);
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        /* 底部 */
+        footer {
+            background: #E6F0DA;
+            padding: 25px 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #6c7a4d;
+            border-radius: 30px 30px 0 0;
+            margin-top: 30px;
+            border-top: 2px dashed var(--green-mid);
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+        .footer-links span {
+            cursor: pointer;
+            border-bottom: 1px dotted var(--green-mid);
+        }
+    </style>
+</head>
+<body>
+
+<div class="kiwi-slice slice1"></div>
+<div class="kiwi-slice slice2"></div>
+<div class="kiwi-slice slice3"></div>
+<div class="kiwi-slice slice4"></div>
+
+<div class="container">
+    <!-- 题头区域 -->
+    <div class="header">
+        <div class="logo-area">
+            <img class="logo-img" src="logo.png" alt="Logo" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22%2388B04B%22/%3E%3Ctext x=%2250%22 y=%2270%22 text-anchor=%22middle%22 font-size=%2240%22 fill=%22white%22%3E🥝%3C/text%3E%3C/svg%3E'">
+            <div>
+                <div class="brand-name">甜言猕语 <small>🥝</small></div>
+            </div>
+        </div>
+        <div class="slogan">
+            <i class="fas fa-leaf"></i> 开启奇妙之旅
+        </div>
+    </div>
+
+    <div class="top-cards">
+        <div class="card-item" onclick="location.href='personal-space.html'">
+            <img src="monkey.png" alt="猴子" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22%238B5E3C%22/%3E%3Ctext x=%2250%22 y=%2270%22 text-anchor=%22middle%22 font-size=%2240%22 fill=%22white%22%3E🐵%3C/text%3E%3C/svg%3E'">
+            <span>个人空间</span>
+        </div>
+        <div class="card-item" onclick="location.href='shop.html'">
+            <i class="fas fa-shopping-cart"></i> <span>商品购买/购物车</span>
+        </div>
+        <div class="card-item" id="loginBtn">
+            <img src="kiwi.png" alt="猕猴桃" style="width:28px;height:28px;border-radius:0;" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%23A3C95A%22/%3E%3Ccircle cx=%2235%22 cy=%2240%22 r=%223%22 fill=%22black%22/%3E%3Ccircle cx=%2265%22 cy=%2240%22 r=%223%22 fill=%22black%22/%3E%3C/svg%3E'">
+            <span>登录/注册</span>
+        </div>
+    </div>
+
+    <div class="middle-section">
+        <!-- 纯圆形果树 - 无树叶，圆形边框 -->
+        <div class="left-tree" onclick="location.href='planting.html'">
+            <div class="curved-text">🥝 果树领养</div>
+            <div class="tree-img">🌳</div>
+            <div style="color:#88B04B; font-weight:500;">点击开启种植之旅</div>
+        </div>
+        <div class="right-carousel">
+            <div class="carousel" id="carouselImg">
+                <img id="carouselImage" src="banner1.jpg" alt="轮播图" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 200%22%3E%3Crect width=%22400%22 height=%22200%22 fill=%22%23D3E0B3%22/%3E%3Ctext x=%22200%22 y=%22120%22 text-anchor=%22middle%22 font-size=%2230%22 fill=%22%2388B04B%22%3E🥝 甜言猕语果园%3C/text%3E%3C/svg%3E'">
+            </div>
+            <div class="carousel-dots" id="carouselDots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+            <div class="travel-link" onclick="location.href='travel-booking.html'">
+                🏞️ 猕猴桃基地 / 旅游预约 🧳
+            </div>
+        </div>
+    </div>
+
+    <div class="features">
+        <div class="feature-icon" onclick="alert('生态种植，无公害果园🍃')"><i class="fas fa-leaf"></i> 生态种植</div>
+        <div class="feature-icon" onclick="alert('新鲜采摘，农场直达🚚')"><i class="fas fa-truck"></i> 农场直送</div>
+        <div class="feature-icon" onclick="alert('快乐体验，亲子好去处😊')"><i class="fas fa-smile-wink"></i> 快乐体验</div>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-links">
+        <span onclick="alert('关于甜言猕语：一群热爱猕猴桃的年轻人')">关于我们</span>
+        <span onclick="alert('团队介绍：来自农业与设计的跨界组合')">团队介绍</span>
+        <span onclick="alert('品牌故事：甜言猕语，源于一颗阳光下的猕猴桃')">品牌故事</span>
+        <span onclick="alert('帮助中心：常见问题')">帮助中心</span>
+        <span onclick="alert('客服邮箱：hello@tianyanmiyu.com')">客服邮箱</span>
+        <span onclick="alert('隐私政策：保护您的数据')">隐私政策</span>
+    </div>
+    <div>© 2026 甜言猕语 | 版权所有 | 陕ICP备2026xxxx号</div>
+</footer>
+
+<script>
+    const bannerImages = [
+        'banner1.jpg',
+        'banner2.jpg',
+        'banner3.jpg'
+    ];
+    
+    let currentIndex = 0;
+    const carouselImage = document.getElementById('carouselImage');
+    const dots = document.querySelectorAll('.dot');
+    
+    function updateCarousel(index) {
+        currentIndex = index;
+        carouselImage.src = bannerImages[currentIndex];
+        dots.forEach((dot, i) => {
+            if(i === currentIndex) {
+                dot.classList.add('active');
+            } else {
+                dot.classList.remove('active');
+            }
+        });
+    }
+    
+    function nextImage() {
+        let next = (currentIndex + 1) % bannerImages.length;
+        updateCarousel(next);
+    }
+    
+    let autoTimer = setInterval(nextImage, 3000);
+    
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            clearInterval(autoTimer);
+            updateCarousel(index);
+            autoTimer = setInterval(nextImage, 3000);
+        });
+    });
+    
+    document.getElementById('loginBtn').addEventListener('click', function() {
+        let choice = confirm('点击“确定”去登录，取消则留在首页');
+        if(choice) location.href = 'login.html';
+    });
+</script>
+</body>
+</html>

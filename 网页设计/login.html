@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>登录/注册 - 甜言猕语</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #FDFBF7;
+            font-family: 'Nunito', 'Quicksand', system-ui, sans-serif;
+            padding: 20px;
+            position: relative;
+        }
+
+        /* 手绘背景纹理 */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(45deg, rgba(163,201,90,0.08) 0px, rgba(163,201,90,0.08) 2px, transparent 2px, transparent 8px),
+                repeating-linear-gradient(135deg, rgba(136,176,75,0.06) 0px, rgba(136,176,75,0.06) 2px, transparent 2px, transparent 8px);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        :root {
+            --green-dark: #88B04B;
+            --green-mid: #A3C95A;
+            --green-light: #D3E0B3;
+        }
+
+        /* 返回按钮 */
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 28px;
+            color: var(--green-dark);
+            background: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 4px 4px 0 rgba(0,0,0,0.06);
+            cursor: pointer;
+            z-index: 99;
+            text-decoration: none;
+            border: 2px dashed var(--green-mid);
+            transition: 0.2s;
+        }
+        .back-btn:hover {
+            transform: translateX(-2px);
+            box-shadow: 6px 6px 0 rgba(0,0,0,0.08);
+        }
+
+        .container {
+            max-width: 450px;
+            margin: 80px auto;
+            background: white;
+            border-radius: 48px;
+            padding: 40px 30px;
+            border: 2px dashed var(--green-mid);
+            box-shadow: 6px 6px 0 rgba(0,0,0,0.06);
+            position: relative;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .logo .kiwi-logo {
+            display: inline-block;
+            width: 70px;
+            height: 70px;
+            background: radial-gradient(circle, #F9E45B 20%, #A3C95A 50%, #88B04B 80%);
+            border-radius: 50%;
+            position: relative;
+            border: 2px solid var(--green-dark);
+        }
+        .logo .kiwi-logo::before {
+            content: "● ● ●";
+            position: absolute;
+            font-size: 14px;
+            color: #2c2c2c;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            letter-spacing: 5px;
+            white-space: nowrap;
+        }
+        .logo h2 {
+            color: var(--green-dark);
+            margin-top: 15px;
+            font-size: 24px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 35px;
+            border-bottom: 2px dashed var(--green-mid);
+        }
+        .tab {
+            font-size: 22px;
+            font-weight: bold;
+            padding-bottom: 12px;
+            cursor: pointer;
+            color: #aaa;
+        }
+        .tab.active {
+            color: var(--green-dark);
+            border-bottom: 2px solid var(--green-dark);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+        input {
+            width: 100%;
+            padding: 15px 18px;
+            border: 1.5px dashed var(--green-mid);
+            border-radius: 40px;
+            font-size: 16px;
+            outline: none;
+            background: #FDFBF7;
+            transition: 0.2s;
+        }
+        input:focus {
+            border-color: var(--green-dark);
+            border-style: solid;
+        }
+
+        .btn {
+            background: var(--green-dark);
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 15px;
+            border-radius: 60px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            box-shadow: 4px 4px 0 rgba(0,0,0,0.08);
+            transition: 0.2s;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 6px 6px 0 rgba(0,0,0,0.1);
+        }
+
+        .form-panel {
+            display: none;
+        }
+        .form-panel.active-panel {
+            display: block;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 12px;
+            color: #aaa;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+<a class="back-btn" href="index.html">←</a>
+
+<div class="container">
+    <div class="logo">
+        <div class="kiwi-logo"></div>
+        <h2>甜言猕语</h2>
+    </div>
+    <div class="tabs">
+        <div class="tab active" data-tab="login">登录</div>
+        <div class="tab" data-tab="register">注册</div>
+    </div>
+
+    <div id="loginPanel" class="form-panel active-panel">
+        <div class="form-group"><input type="text" id="loginAccount" placeholder="手机号 / 邮箱"></div>
+        <div class="form-group"><input type="password" id="loginPwd" placeholder="密码"></div>
+        <button class="btn" id="doLogin">登 录</button>
+    </div>
+
+    <div id="registerPanel" class="form-panel">
+        <div class="form-group"><input type="text" id="regPhone" placeholder="手机号"></div>
+        <div class="form-group"><input type="text" id="regName" placeholder="用户名"></div>
+        <div class="form-group"><input type="password" id="regPwd" placeholder="密码"></div>
+        <button class="btn" id="doRegister">注 册</button>
+    </div>
+</div>
+
+<footer>© 2026 甜言猕语 | 甜蜜从这一刻开始</footer>
+
+<script>
+    const tabs = document.querySelectorAll('.tab');
+    const loginPanel = document.getElementById('loginPanel');
+    const registerPanel = document.getElementById('registerPanel');
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            if(tab.dataset.tab === 'login') {
+                loginPanel.classList.add('active-panel');
+                registerPanel.classList.remove('active-panel');
+            } else {
+                registerPanel.classList.add('active-panel');
+                loginPanel.classList.remove('active-panel');
+            }
+        });
+    });
+
+    document.getElementById('doRegister').addEventListener('click', () => {
+        let phone = document.getElementById('regPhone').value.trim();
+        let name = document.getElementById('regName').value.trim();
+        let pwd = document.getElementById('regPwd').value.trim();
+        if(!phone || !name || !pwd) { alert('请填写完整信息'); return; }
+        let user = { phone, username: name, password: pwd, points: 300, currentTree: null };
+        localStorage.setItem('kiwi_user', JSON.stringify(user));
+        if(!localStorage.getItem('kiwi_tree')) {
+            localStorage.setItem('kiwi_tree', JSON.stringify({ weight_g: 0, lastSignDate: null, currentTreeId: null }));
+        }
+        alert('注册成功！赠送300积分');
+        location.href = 'personal-space.html';
+    });
+
+    document.getElementById('doLogin').addEventListener('click', () => {
+        let account = document.getElementById('loginAccount').value.trim();
+        let pwd = document.getElementById('loginPwd').value.trim();
+        let stored = localStorage.getItem('kiwi_user');
+        if(stored) {
+            let user = JSON.parse(stored);
+            if((account === user.phone || account === user.username) && pwd === user.password) {
+                alert('登录成功');
+                location.href = 'personal-space.html';
+            } else { alert('账号或密码错误'); }
+        } else {
+            alert('请先注册');
+        }
+    });
+</script>
+</body>
+</html>
